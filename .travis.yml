@@ -19,9 +19,12 @@ before_install:
   - export MARVIN_HOME=./marvin_home
   - export MARVIN_DATA_PATH=./marvin_data
   - export SPARK_HOME=./spark-2.1.1-bin-hadoop2.6
-  - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then sudo easy_install pip          ; fi
-  - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then brew update                    ; fi
-  - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then brew install openssl graphviz  ; fi
+  - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then sudo curl -O http://python-distribute.org/distribute_setup.py           ; fi
+  - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then sudo python distribute_setup.py ; fi
+  - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then sudo curl -O https://raw.github.com/pypa/pip/master/contrib/get-pip.py  ; fi
+  - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then sudo python get-pip.py          ; fi
+  - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then brew update                     ; fi
+  - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then brew install openssl graphviz   ; fi
   - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then sudo apt-get install libsasl2-dev python-pip graphviz -y ; fi
   - sudo pip install --upgrade pip
   - sudo pip install virtualenvwrapper --ignore-installed six

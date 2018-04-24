@@ -5,8 +5,6 @@
 
 Use this module to add the project main code.
 """
-from sklearn.model_selection import StratifiedShuffleSplit, train_test_split, cross_val_score, GridSearchCV
-
 from .._compatibility import six
 from .._logging import get_logger
 
@@ -24,7 +22,8 @@ class TrainingPreparator(EngineBaseDataHandler):
         super(TrainingPreparator, self).__init__(**kwargs)
 
     def execute(self, params, **kwargs):
-        from sklearn.model_selection import StratifiedShuffleSplit, train_test_split, cross_val_score, GridSearchCV
+
+        from sklearn.model_selection import StratifiedShuffleSplit
 
         train_no_na = self.marvin_initial_dataset['train'][params["pred_cols"] + [params["dep_var"]]].dropna()
 
@@ -39,17 +38,20 @@ class TrainingPreparator(EngineBaseDataHandler):
         sss = StratifiedShuffleSplit(n_splits=5, test_size=.6, random_state=0)
         sss.get_n_splits(data_X, data_y)
 
-        for train_index, test_index in sss.split(data_X, data_y):
-            X_train, X_test = data_X.iloc[train_index], data_X.iloc[test_index]
-            y_train, y_test = data_y.iloc[train_index], data_y.iloc[test_index]
+        # Get Test Dataset
+        test_no_na = self.marvin_initial_dataset['test'][params["pred_cols"]].dropna()
+
+        print("Length: {}".format(len(test_no_na)))
+
+        # Feature Engineering
+        test_X = test_no_na[params["pred_cols"]]
+        test_X.loc[:, 'Sex'] = test_X.loc[:, 'Sex'].map({'male': 1, 'female': 0})
 
         self.marvin_dataset = {
-            'X_train': X_train,
-            'y_train': y_train,
-            'X_test': X_test,
-            'y_test': y_test,
+            'X_train': data_X,
+            'y_train': data_y,
+            'X_test': test_X,
             'sss': sss
         }
 
-        print ("Preparation is Done!!!!")
-
+        print("Preparation is Done!!!!")

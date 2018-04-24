@@ -26,7 +26,7 @@ class PredictionPreparator(EngineBasePrediction):
         # Given the input: input_message = {"age": 50, "class": 3, "sex": 0}
         # Transform the message into a correctly ordered list for the model
 
-        key_order = {"age": 0, "class": 1, "sex": 2, "fare": 3}
+        key_order = {"Age": 0, "Pclass": 1, "Sex": 2, "Fare": 3}
         input_message = [input_message[i] for i in sorted(input_message, key=key_order.__getitem__)]
 
         return input_message

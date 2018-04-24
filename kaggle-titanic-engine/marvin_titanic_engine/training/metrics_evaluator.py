@@ -61,4 +61,3 @@ class MetricsEvaluator(EngineBaseTraining):
             print("%d. feature %s (%f)" % all_metrics["feature_ranking"][f])
 
         self.marvin_metrics = all_metrics
-

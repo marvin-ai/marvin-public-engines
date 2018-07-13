@@ -8,7 +8,6 @@ Use this module to add the project main code.
 
 from .._compatibility import six
 from .._logging import get_logger
-
 from sklearn import metrics
 import numpy as np
 
@@ -26,19 +25,17 @@ class MetricsEvaluator(EngineBaseTraining):
         super(MetricsEvaluator, self).__init__(**kwargs)
 
     def execute(self, params, **kwargs):
-        from sklearn import metrics
-        import numpy as np
 
         all_metrics = {}
 
         _model = self.marvin_model
         for model_type, fitted_model in _model.iteritems():
 
-            y_predicted = fitted_model.predict(self.marvin_dataset['X_test'])
+            y_predicted = fitted_model.predict(self.marvin_dataset['X_train'])
 
             all_metrics[model_type] = {}
-            all_metrics[model_type]["report"] = metrics.classification_report(y_predicted, self.marvin_dataset['y_test'])
-            all_metrics[model_type]["confusion_matrix"] = metrics.confusion_matrix(y_predicted, self.marvin_dataset['y_test'])
+            all_metrics[model_type]["report"] = metrics.classification_report(y_predicted, self.marvin_dataset['y_train'])
+            all_metrics[model_type]["confusion_matrix"] = metrics.confusion_matrix(y_predicted, self.marvin_dataset['y_train'])
 
             # Print the classification report of `y_test` and `predicted`
             print("Classification Report:\n")

@@ -10,6 +10,8 @@ import pandas as pd
 
 from .._compatibility import six
 from .._logging import get_logger
+from marvin_python_toolbox.common.data import MarvinData
+import pandas as pd
 
 from marvin_python_toolbox.engine_base import EngineBaseDataHandler
 
@@ -25,8 +27,6 @@ class AcquisitorAndCleaner(EngineBaseDataHandler):
         super(AcquisitorAndCleaner, self).__init__(**kwargs)
 
     def execute(self, params, **kwargs):
-        from marvin_python_toolbox.common.data import MarvinData
-        import pandas as pd
 
         train_df = pd.read_csv(MarvinData.download_file("https://s3.amazonaws.com/marvin-engines-data/titanic/train.csv"))
         test_df = pd.read_csv(MarvinData.download_file("https://s3.amazonaws.com/marvin-engines-data/titanic/test.csv"))

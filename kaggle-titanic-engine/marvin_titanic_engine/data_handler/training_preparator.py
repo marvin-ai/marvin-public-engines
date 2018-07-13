@@ -7,6 +7,7 @@ Use this module to add the project main code.
 """
 from .._compatibility import six
 from .._logging import get_logger
+from sklearn.model_selection import StratifiedShuffleSplit
 
 from marvin_python_toolbox.engine_base import EngineBaseDataHandler
 
@@ -22,8 +23,6 @@ class TrainingPreparator(EngineBaseDataHandler):
         super(TrainingPreparator, self).__init__(**kwargs)
 
     def execute(self, params, **kwargs):
-
-        from sklearn.model_selection import StratifiedShuffleSplit
 
         train_no_na = self.marvin_initial_dataset['train'][params["pred_cols"] + [params["dep_var"]]].dropna()
 
@@ -54,4 +53,5 @@ class TrainingPreparator(EngineBaseDataHandler):
             'sss': sss
         }
 
-        print("Preparation is Done!!!!")
+        print ("Preparation is Done!!!!")
+

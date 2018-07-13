@@ -10,8 +10,11 @@ except ImportError:
 from marvin_titanic_engine.prediction import PredictionPreparator
 
 
-class TestPredictionPreparator:
-    def test_execute(self, mocked_params):
-        ac = PredictionPreparator()
-        ac.execute(input_message="fake message", params=mocked_params)
-        assert not ac._params
+def test_execute(mocked_params):
+
+    message = {"Age": 50, "Pclass": 3, "Sex": 0}
+
+    ac = PredictionPreparator()
+    ac.execute(input_message=message, params=mocked_params)
+
+    assert not ac._params

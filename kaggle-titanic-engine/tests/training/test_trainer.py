@@ -12,8 +12,9 @@ from sklearn.model_selection import StratifiedShuffleSplit
 from marvin_titanic_engine.training import Trainer
 
 
+@mock.patch('marvin_titanic_engine.training.trainer.round')
 @mock.patch('marvin_titanic_engine.training.trainer.GridSearchCV')
-def test_execute(grid_mocked, mocked_params):
+def test_execute(grid_mocked, round_mocked, mocked_params):
 
     test_dataset = {
         "X_train": pd.DataFrame({'Sex': [1, 2, 3], 'B': [4, 5, 6], 'C': [7, 8, 9]}),
@@ -43,3 +44,4 @@ def test_execute(grid_mocked, mocked_params):
     ac.execute(params=mocked_params)
 
     grid_mocked.assert_called()
+    round_mocked.assert_called()

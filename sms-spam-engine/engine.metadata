@@ -4,6 +4,7 @@
 	"engineType": "python",
 	"artifactsRemotePath": "/tmp/marvin",
 	"artifactManagerType": "FS",
+	"s3BucketName": "marvin-artifact-bucket",
 	"onlineActionTimeout": 1000,
     "healthCheckTimeout": 2000,
 	"reloadTimeout": 600000,

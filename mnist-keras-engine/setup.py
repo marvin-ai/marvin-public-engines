@@ -90,7 +90,7 @@ setup(
         'pluggy==0.3.1',
         'opencv-python==3.4.0.12'
     ],
-    dependency_links=['git+https://github.com/marvin-ai/marvin-python-toolbox.git/@v0.0.3#egg=marvin_python_toolbox-0'],
+    dependency_links=['git+https://github.com/marvin-ai/marvin-python-toolbox.git/@master#egg=marvin_python_toolbox-0'],
     tests_require=REQUIREMENT_TESTS,
     extras_require={
         'testing': REQUIREMENT_TESTS,

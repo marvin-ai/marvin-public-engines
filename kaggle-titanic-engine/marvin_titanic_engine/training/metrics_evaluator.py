@@ -6,9 +6,10 @@
 Use this module to add the project main code.
 """
 
-from .._compatibility import six
+from .._compatibility import six 
 from .._logging import get_logger
 from sklearn import metrics
+from six import iteritems
 import numpy as np
 
 from marvin_python_toolbox.engine_base import EngineBaseTraining
@@ -29,7 +30,7 @@ class MetricsEvaluator(EngineBaseTraining):
         all_metrics = {}
 
         _model = self.marvin_model
-        for model_type, fitted_model in _model.iteritems():
+        for model_type, fitted_model in iteritems(_model):
 
             y_predicted = fitted_model.predict(self.marvin_dataset['X_train'])
 

@@ -54,13 +54,6 @@ paths:
             type: string
           required: true
           description: The Protocol value generated from last action
-      requestBody:
-        description: Use an empty json as body
-        required: true
-        content:
-          application/json:
-            schema:
-              type: object
       operationId: getStatus
       tags:
         - Acquisitor
@@ -98,7 +91,7 @@ paths:
   /tpreparator/health:
     get:
       summary: Get trainer preparator's service health
-      operationId: getHealth
+      operationId: tpreparator
       tags:
         - Tpreparator
       responses:
@@ -120,13 +113,6 @@ paths:
             type: string
           required: true
           description: The Protocol value generated from last action
-      requestBody:
-        description: Use an empty json as body
-        required: true
-        content:
-          application/json:
-            schema:
-              type: object
       operationId: getStatus
       tags:
         - Tpreparator
@@ -193,7 +179,7 @@ paths:
   /trainer/health:
     get:
       summary: Get trainer's service health
-      operationId: getHealth
+      operationId: trainer
       tags:
         - Trainer
       responses:
@@ -215,13 +201,6 @@ paths:
             type: string
           required: true
           description: The Protocol value generated from last action
-      requestBody:
-        description: Use an empty json as body
-        required: true
-        content:
-          application/json:
-            schema:
-              type: object
       operationId: getStatus
       tags:
         - Trainer
@@ -288,7 +267,7 @@ paths:
   /evaluator/health:
     get:
       summary: Get evaluator's service health
-      operationId: getHealth
+      operationId: evaluator
       tags:
         - Evaluator
       responses:
@@ -310,14 +289,29 @@ paths:
             type: string
           required: true
           description: The Protocol value generated from last action
-      requestBody:
-        description: Use an empty json as body
-        required: true
-        content:
-          application/json:
-            schema:
-              type: object
       operationId: getStatus
+      tags:
+        - Evaluator
+      responses:
+        '200':
+          description: Result Message / Success
+        '400':
+          description: Bad Request / Illegal Argument / Missing Parameters
+        '500':
+          description: Internal Server Error / Timeout
+        '503':
+          description: Service Unavailable
+  /evaluator/metrics?protocol=:
+    get:
+      summary: Get metrics's value
+      parameters: 
+        - in: query
+          name: protocol
+          schema: 
+            type: string
+          required: true
+          description: Metrics protocol value
+      operationId: getMetrics
       tags:
         - Evaluator
       responses:
@@ -339,13 +333,6 @@ paths:
             type: string
           required: true
           description: The Protocol value generated from last action
-      requestBody:
-        description: The default value for body is an empty json object
-        required: true
-        content:
-          application/json:
-            schema:
-              type: object
       operationId: evaluator
       tags:
         - Evaluator
@@ -405,13 +392,6 @@ paths:
             type: string
           required: true
           description: The Protocol value generated from last action
-      requestBody:
-        description: Use an empty json as body
-        required: true
-        content:
-          application/json:
-            schema:
-              type: object
       operationId: getStatus
       tags:
         - Predictor
@@ -478,7 +458,7 @@ paths:
   /feedback/health:
     get:
       summary: Get feedback's service health
-      operationId: getHealth
+      operationId: feedback
       tags:
         - Feedback
       responses:
@@ -500,13 +480,6 @@ paths:
             type: string
           required: true
           description: The Protocol value generated from last action
-      requestBody:
-        description: Use an empty json as body
-        required: true
-        content:
-          application/json:
-            schema:
-              type: object
       operationId: getStatus
       tags:
         - Feedback

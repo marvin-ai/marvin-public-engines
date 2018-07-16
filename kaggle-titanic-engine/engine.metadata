@@ -6,6 +6,7 @@
 	"artifactManagerType": "FS",
 	"onlineActionTimeout": 1000,
     "healthCheckTimeout": 2000,
+    "metricsTimeout": 10000,
 	"reloadTimeout": 600000,
 	"batchActionTimeout": 600000,
 	"pipelineActions": ["acquisitor", "tpreparator", "trainer", "evaluator"],
